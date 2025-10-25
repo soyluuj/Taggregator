@@ -5,7 +5,6 @@ const bookmarkSchema = new mongoose.Schema({
     id: { type: String, unique: true, default: () => uuidv4() },
     url: { type: String, required: true, trim: true },
     title: { type: String, required: true, trim: true },
-    description: { type: String, trim: true },
     tags: [{ type: String, trim: true }],
     userId: { type: String, ref: 'User', required: true }, 
     // Online capabilities are not implemented yet !!
