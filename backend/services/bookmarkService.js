@@ -12,4 +12,14 @@ class BookmarkService {
             throw new Error(`Failed to create bookmark: ${error.message}`);
         }
     }
+
+    async getUserBookmarks(userId) {
+        try {
+            return await Bookmark.find({ userId })
+                .sort({ createdAt: -1 })
+                .exec();
+        } catch (error) {
+            throw new Error(`Failed to fetch bookmarks: ${error.message}`);
+        }
+    }
 }
