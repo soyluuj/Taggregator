@@ -6,7 +6,7 @@ class ArticleService {
         const likesWeight = 0.3;
         const recencyWeight = 0.1;
         
-        // (Articles from last 7 days get boost)
+        // Recent articles more popular
         const daysOld = (new Date() - article.publishedDate) / (1000 * 60 * 60 * 24);
         const recencyFactor = Math.max(0, (7 - daysOld)) / 7.0;
         
