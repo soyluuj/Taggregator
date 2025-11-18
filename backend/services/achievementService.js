@@ -1,13 +1,12 @@
 const achievement = require('../models/achievementModel');
 const userAchievement = require('../models/userAchievementModel');
+const user = require('../models/userModel');
 
 const achievementChecker = async (userId, criteria) => {
-    // Check if the achievement with the given criteria exists
     const achievementRecord = await achievement.findOne({ criteria });
     if (!achievementRecord) {
         throw new Error('Achievement not found for the given criteria');
     }
-    // Check if the user has already earned this achievement
     const existingUserAchievement = await userAchievement.findOne({ 
         userId,
         achievementId: achievementRecord.id
@@ -15,7 +14,6 @@ const achievementChecker = async (userId, criteria) => {
     if (existingUserAchievement) {
         return { message: 'Achievement already earned' };
     }
-    // Award the achievement to the user
     const newUserAchievement = new userAchievement({
         userId,
         achievementId: achievementRecord.id
@@ -24,6 +22,19 @@ const achievementChecker = async (userId, criteria) => {
     return { message: 'Achievement awarded', achievement: achievementRecord };
 }
 
+const createAchievement = async (name, description, badgeIconUrl, criteria) => {
+    const newAchievement = new achievement({
+        name,
+        description,
+        badgeIconUrl,
+        criteria    
+    });
+    await newAchievement.save();
+    return newAchievement;
+}
+
 module.exports = {
-    achievementChecker
+    achievementChecker,
+    createAchievement,
+    listAchievements
 };
