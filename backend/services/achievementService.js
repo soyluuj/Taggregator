@@ -24,6 +24,23 @@ const achievementChecker = async (userId, criteria) => {
     return { message: 'Achievement awarded', achievement: achievementRecord };
 }
 
+const createAchievement = async (name, description, badgeIconUrl, criteria) => {
+    const newAchievement = new achievement({
+        name,
+        description,
+        badgeIconUrl,
+        criteria    
+    });
+    await newAchievement.save();
+    return newAchievement;
+}
+
+const listAchievements = async () => {
+    return await achievement.find({});
+}
+
 module.exports = {
-    achievementChecker
+    achievementChecker, 
+    createAchievement, 
+    listAchievements
 };
