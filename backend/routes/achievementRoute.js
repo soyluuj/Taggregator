@@ -5,6 +5,6 @@ const service = require('../services/achievementService');
 const { validateAchievementCreation } = require('../validators/achievementValidator');
 
 router.post('/create', validateAchievementCreation, service.createAchievement);
-router.get('/list', controller.listAchievements);
+router.get('/list', service.listAchievements);
 
 module.exports = router;
