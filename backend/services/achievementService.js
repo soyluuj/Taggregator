@@ -24,12 +24,13 @@ const achievementChecker = async (userId, criteria) => {
     return { message: 'Achievement awarded', achievement: achievementRecord };
 }
 
-const createAchievement = async (name, description, badgeIconUrl, criteria) => {
+const createAchievement = async (name, description, badgeIconUrl, criteria, exp) => {
     const newAchievement = new achievement({
         name,
         description,
         badgeIconUrl,
-        criteria    
+        criteria,
+        exp    
     });
     await newAchievement.save();
     return newAchievement;
