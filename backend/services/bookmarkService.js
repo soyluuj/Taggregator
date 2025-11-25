@@ -46,6 +46,23 @@ class BookmarkService {
             throw new Error(`Failed to search bookmarks: ${error.message}`);
         }
     }
+
+    async getFollowedUsersBookmarks(userId) {
+        try {
+            const user = await User.findOne({ id: userId });
+            if (!user || !user.following.length) return [];
+            
+            return await Bookmark.find({
+                userId: { $in: user.following },
+                isPublic: true
+            })
+            .sort({ createdAt: -1 })
+            .populate('userId', 'username') 
+            .exec();
+        } catch (error) {
+            throw new Error(`Failed to fetch followed users bookmarks: ${error.message}`);
+        }
+    }
 }
 
 module.exports = new BookmarkService();
