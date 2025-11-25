@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 180px;
+    background-color: #2bea32;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.brand span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    font-family: Afacad;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+.profile-pic-nav {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+@font-face {
+  font-family: Afacad;
+  src: url(../src/Afacad-VariableFont_wght.ttf);
+}
+
+/* PROFILE ELEMENTS */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.profile-card {
+    width: 400px;
+    text-align: center;
+}
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    background: #8f8f8f;
+    border-radius: 4px;
+    margin: 0 auto 15px;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.interests-label {
+    font-size: 12px;
+    opacity: 50%;
+    margin-bottom: 6px;
+}
+
+.interest-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-weight: lighter;
+}
+
+.tag {
+    background: #01e63f;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #000;
+}
+
+.edit-btn {
+    background: #00b31e;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.edit-btn:hover {
+    background: #009a18;
+}
+
+/* RIGHT SIDE: Achievements Grid */
+.achievements-container {
+    width: 300px;
+}
+
+.achievements-title {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: lighter;
+}
+
+.achievement-box {
+    width: 100%;
+    height: 300px;
+    background: #ddd;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    overflow-y: auto;
+    border-radius: 6px;
+}
+
+.badge {
+    width: 75px;
+    height: 75px;
+    background: #f5ff36; /* yellowish badge */
+    border-radius: 50%;
+    margin: auto;
+}
