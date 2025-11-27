@@ -1,0 +1,26 @@
+{
+  "name": "taggregator",
+  "version": "1.0.0",
+  "description": "Welcome to the Taggregator repository.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soyluuj/Taggregator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soyluuj/Taggregator/issues"
+  },
+  "homepage": "https://github.com/soyluuj/Taggregator#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-validator": "^7.3.1",
+    "mongoose": "^8.19.2",
+    "uuid": "^13.0.0"
+  }
+}
