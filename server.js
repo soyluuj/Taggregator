@@ -5,7 +5,8 @@ const userRoutes = require("./routes/userRoutes");
 const app = express();
 app.use(express.json());
 
-const mongooseDatabase = "";
+const mongooseDatabase = 
+"mongodb+srv://taggregator:DN0u5T1np1XQg99d@cluster0.ooabijw.mongodb.net/?appName=Cluster0";
 mongoose.connect(mongooseDatabase)
   .then(() => console.log("Connected to DB"))
   .catch(err => console.error(err));
@@ -18,4 +19,4 @@ app.use("/backend", userRoute.js);
 const PORT = 3000;
 app.listen(
     PORT, 
-    () => console.log(`Server running on http://localhost:${PORT}`));
+    () => console.log(`http://localhost:${PORT}`));
