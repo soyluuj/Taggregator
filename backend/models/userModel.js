@@ -7,7 +7,10 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     following: [{ type: String }], 
     followers: [{ type: String }],
-    publicProfile: { type: Boolean, default: true }
+    publicProfile: { type: Boolean, default: true },
+    exp: { type: Number, default: 0 },
+    level: { type: Number, default: 1 },
+    badges: [{ type: String }]
 }, {
     timestamps: true
 });
