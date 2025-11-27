@@ -6,7 +6,19 @@ const achievementSchema = new mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
     badgeIconUrl: { type: String, required: true },
-    criteria: { type: String, required: true },
+    criteria: { type: {
+            type: String, 
+            required: true,
+            enum: [] // Define types of criteria here
+        },
+        field: { type: String },
+        operator: { 
+            type: String, 
+            enum: ['>=', '==', '<=', '>', '<', 'contains', 'count_gte'] 
+        },
+        value: { type: mongoose.Schema.Types.Mixed },
+        query: { type: String }
+ },
     exp: { type: Number, required: true }
 })
 
