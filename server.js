@@ -7,6 +7,7 @@ const bookmarkRoutes = require("./backend/routes/bookmarkRoutes")
 const userRoute = require("./backend/routes/userRoutes")
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const mongooseDatabase = 
