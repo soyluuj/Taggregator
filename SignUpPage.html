@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="SignUp.css" />
+</head>
+
+
+<body>
+    <section class="signup">
+        <!-- Step 1: Create Account -->
+         
+        
+        <div class="signup-step" id="signup-step-1">
+            <h2>Create an account</h2>
+
+        <div class="auth-options" id="authButtons">
+            <button class="google-btn" id="googleBtn">Continue with Google</button>
+            <button class="github-btn" id="githubBtn">Continue with GitHub</button>
+
+            <div class="divider"><span>or</span></div>
+
+            <button type="button" id="emailOption">Continue using Email</button>
+        </div>
+
+            <form id="emailForm" style="display: none;">
+                <label for="username">Username</label>
+                <input type="text" id="username" />
+
+                <label for="email">Email</label>
+                <input type="email" id="email" />
+
+                <label for="password">Password</label>
+                <input type="password" id="password" />
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" />
+                <p class="login-link">
+                    Already have an account? <a href="AuthPage.html">Log in</a>
+                </p>
+                
+
+                <!-- ✅ CAPTCHA here -->
+                <div class="captcha-container">
+                    <div id="captcha-box">
+                        <span id="captcha-text"></span>
+                        <button type="button" id="refresh-btn">↻</button>
+                    </div>
+
+                    <input type="text" id="captcha-input" placeholder="Enter CAPTCHA" />
+                    <p id="captcha-status"></p>
+                </div>
+
+                <button type="button" id="nextBtn">Sign up</button>
+            </form>
+        </div>
+        
+    <form id="oauthEmailForm" style="display: none;">
+        <h3>Enter your credentials to continue</h3>
+
+        <label for="fallback-email">Email</label>
+        <input type="email" id="fallback-email">
+
+        <button type="button" id="fallbackNext">Continue</button>
+    </form>
+
+
+        <!-- Step 2 -->
+        <div class="signup-step hidden" id="signup-step-2">
+            <h2>Choose your interests!</h2>
+
+            <div class="interests-grid">
+                <button class="interest">Science</button>
+                <button class="interest">Math</button>
+                <button class="interest">History</button>
+                <button class="interest">Technology</button>
+                <button class="interest">Art</button>
+                <button class="interest">Language</button>
+                <button class="interest">Gaming</button>
+                <button class="interest">Sports</button>
+                <button class="interest">Music</button>
+                <button class="interest">Coding</button>
+                <button class="interest">Business</button>
+                <button class="interest">Design</button>
+            </div>
+
+            <button id="finishBtn">Next</button>
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script>
+        /* -- CAPTCHA -- */
+        let captchaValue = "";
+
+        function generateCaptcha() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+            captchaValue = "";
+
+            for (let i = 0; i < 5; i++) {
+                captchaValue += chars[Math.floor(Math.random() * chars.length)];
+            }
+
+            document.getElementById("captcha-text").textContent = captchaValue;
+        }
+
+        function checkCaptcha() {
+            const userValue = document.getElementById("captcha-input").value.trim();
+            const status = document.getElementById("captcha-status");
+
+            if (userValue === captchaValue) {
+                status.style.color = "green";
+                status.textContent = "Correct!";
+                return true;
+            } else {
+                status.style.color = "red";
+                status.textContent = "Incorrect, try again!";
+                generateCaptcha();
+                return false;
+            }
+        }
+
+        document.getElementById("refresh-btn").addEventListener("click", generateCaptcha);
+        window.addEventListener("load", generateCaptcha);
+
+
+        /* ---------------- Step change ---------------- */
+        const nextBtn = document.getElementById('nextBtn');
+        const step1 = document.getElementById('signup-step-1');
+        const step2 = document.getElementById('signup-step-2');
+
+        nextBtn.addEventListener('click', () => {
+            if (checkCaptcha()) {  
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+            }
+        });
+
+
+        /* -- Interest selection -- */
+        const interestButtons = document.querySelectorAll(".interest");
+        let Count = 0;
+
+        interestButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                if (!button.classList.contains("selected")) {
+                    if (Count < 3) {
+                        button.classList.add("selected");
+                        Count++;
+                    }
+                } else {
+                    button.classList.remove("selected");
+                    Count--;
+                }
+            });
+        });
+        document.getElementById("emailOption").addEventListener("click", () => {
+        document.getElementById("signupForm").style.display = "block";
+        });
+        document.querySelector(".google-btn").addEventListener("click", () => {
+        document.getElementById("authOptions").style.display = "none";
+        document.getElementById("fallbackForm").style.display = "block";
+        });document.getElementById("emailOption").addEventListener("click", () => {
+        authButtons.style.display = "none";
+        emailForm.style.display = "block";
+});
+
+        const authButtons = document.getElementById("authButtons");
+        const emailForm = document.getElementById("emailForm");
+        const oauthEmailForm = document.getElementById("oauthEmailForm");
+
+        document.getElementById("emailOption").addEventListener("click", () => {
+            authButtons.style.display = "none";
+            emailForm.style.display = "block";
+        });
+
+        document.getElementById("googleBtn").addEventListener("click", () => {
+            authButtons.style.display = "none";
+            oauthEmailForm.style.display = "block";
+        });
+
+        document.getElementById("githubBtn").addEventListener("click", () => {
+            authButtons.style.display = "none";
+            oauthEmailForm.style.display = "block";
+        });
+
+    </script>
+
+</body>
+</html>
