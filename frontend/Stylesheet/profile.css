@@ -20,15 +20,16 @@ body {
 }
 
 .brand img {
-    width: 40px;
-    height: 40px;
+    width: 75px;
+    height: 60px;
     object-fit: cover;
 }
 
 .brand span {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
     color: #ffffff;
+    font-family: TacOne;
 }
 
 .nav-links {
@@ -40,7 +41,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 20px;
     color: #ffffff;
 }
 
@@ -54,11 +55,6 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #ccc;
-}
-
-@font-face {
-  font-family: Afacad;
-  src: url(../src/Afacad-VariableFont_wght.ttf);
 }
 
 /* PROFILE ELEMENTS */
@@ -79,7 +75,9 @@ body {
     width: 250px;
     height: 250px;
     background: #8f8f8f;
-    border-radius: 4px;
+    border-radius: 20%;
+    overflow: hidden;
+    object-fit: cover;
     margin: 0 auto 15px;
 }
 
@@ -127,20 +125,70 @@ body {
     background: #009a18;
 }
 
-/* RIGHT SIDE: Achievements Grid */
+/* ACHIEVEMENTS */
 .achievements-container {
-    width: 300px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .achievements-title {
     text-align: center;
     font-size: 18px;
     margin-bottom: 10px;
-    font-weight: lighter;
+    display: flex;
+    justify-content: center ;
 }
 
 .achievement-box {
+    width: 300px;
+    height: 300px;
+    background: #ddd;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    overflow-y: auto;
+    border-radius: 6px;
+    margin: 0 auto;
+}
+
+.badge {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* BOOKMARKS */
+.bookmarks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px auto;
+}
+
+.bookmarks-title {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    justify-content: center ;
+}
+
+.bookmarks-box {
+    width: 1000px;
     height: 300px;
     background: #ddd;
     padding: 15px;
@@ -151,10 +199,21 @@ body {
     border-radius: 6px;
 }
 
-.badge {
-    width: 75px;
-    height: 75px;
-    background: #f5ff36; /* yellowish badge */
-    border-radius: 50%;
-    margin: auto;
+.article {
+    display: grid;
+    gap: 40px;
+    background: #b6b6b6;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* FONTS */
+@font-face {
+  font-family: Afacad;
+  src: url(../src/Fonts/Afacad-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: TacOne;
+    src: url(../src/Fonts/TacOne-Regular.ttf);
 }
