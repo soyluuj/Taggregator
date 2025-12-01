@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taggregator</title>
+    <link rel="stylesheet" href="HomePagestyle.css" />
+</head>
+<body>
+
+  <!--Navbar-->
+  <header class="navbar">
+    <div class="logo">
+      <img src="Assets/swampy-logo.jpg" alt="Taggregator Logo" />
+      <span>Taggregator</span>
+    </div>
+    <button class="hamburger" id="hamburger">
+        ☰
+    </button>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="AuthPage.html">Login</a></li>
+        <li><a href="SignUpPage.html" class="signup">Signup</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+   <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-logo">
+        <div class="logo-box"></div>
+          <img src="Assets/swampy-logo.jpg" alt="Taggregator logo" />
+      </div>
+      <h1>Welcome to <span class="highlight">Taggregator</span></h1>
+      <p>Gamify your learning!</p>
+      <a href="#" class="btn">Get started</a>
+    </div>
+  </section>
+
+  <!-- About Section-->
+  <section class="about">
+    <div class="about-content">
+      <div class="about-logo">
+              <section class="carousel">
+                  <div class="carousel-container">
+                    <div class="slide slide-active">
+                      <img class="slide-img" src="Assets/LINE_ALBUM_Funny_250818_1.jpg" alt="image 1"/>
+                    </div>
+                    <div class="slide">
+                      <img class="slide-img" src="Assets/LINE_ALBUM_Funny_250820_1.jpg" alt="image 2"/>
+                    </div>
+                    <div class="slide">
+                      <img class="slide-img" src="Assets/LINE_ALBUM_Funny_250822_1.jpg" alt="image 3"/>
+                    </div>
+
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+
+                    <div class="dots">
+                      <span class="dot active"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
+                  </div>
+                </section>
+      </div>
+      <p>Taggregator is a gamified learning site with curated articles of varying topics.
+      <br>
+        The topics are arranged into tags and can be anything ranging from tech, science, nature, and more!
+      </p>
+    </div>
+  </section>
+
+  <!-- Partners section -->
+<section class="partners">
+  <p class="section-heading">With articles from...</p>
+
+  <div class="logo-carousel">
+    <button class="logo-prev">&#10094;</button>
+
+    <div class="logo-track">
+      <div class="partner-box"></div>
+      <!-- <div class="partner-box"></div>
+      <div class="partner-box"></div>
+      <div class="partner-box"></div>
+      <div class="partner-box"></div>
+      <div class="partner-box"></div> -->
+    </div>
+
+    <button class="logo-next">&#10095;</button>
+  </div>
+
+  <div class="org-highlight">
+    <div class="org-logo">org logo</div>
+    <h3>The Tengoku Organization</h3>
+    <p>To provide fun learning as a service and to make it free for everyone.</p>
+    <a href="#" class="org-btn">Learn more about us</a>
+  </div>
+
+  <div class="bottom-bar"></div>
+</section>
+
+
+
+
+  <!--Carousel Script-->
+ <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+
+    document.querySelector('.next').addEventListener('click', () => changeSlide(1));
+    document.querySelector('.prev').addEventListener('click', () => changeSlide(-1));
+
+    function changeSlide(direction) {
+      slides[currentSlide].classList.remove('slide-active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      slides[currentSlide].classList.add('slide-active');
+      dots[currentSlide].classList.add('active');
+}
+</script>
+
+
+<!--Big Carousel script-->
+<script>
+  const logoTrack = document.querySelector('.logo-track');
+  const logoPrev = document.querySelector('.logo-prev');
+  const logoNext = document.querySelector('.logo-next');
+
+let logoPos = 0;
+const logoWidth = 120; // 90px box + ~30px gap
+
+logoNext.addEventListener('click', () => {
+  // Move the track RIGHT
+  logoPos += logoWidth;
+  logoTrack.style.transform = `translateX(${logoPos}px)`;
+});
+
+logoPrev.addEventListener('click', () => {
+  // Move the track LEFT
+  logoPos -= logoWidth;
+  logoTrack.style.transform = `translateX(${logoPos}px)`;
+});
+</script>
+
+
+<script src="carousel.js"></script>
+
+<!-- hamburger -->
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
+
+    hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+    });
+</script>
+
+</body>
+</html>
