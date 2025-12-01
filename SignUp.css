@@ -1,0 +1,133 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 2rem;
+}
+
+.signup-step {
+  max-width: 400px;
+  width: 100%;
+}
+
+.signup-step h2 {
+  color: #27d23c;
+  margin-bottom: 1.5rem;
+}
+
+/* Form styling */
+label {
+  display: flex;
+  text-align: left;
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #ccc;
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+button {
+  background-color: #27d23c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.8rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #1fa430;
+}
+
+/* Step 2 - Interests grid */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.interest {
+  background-color: #ddd;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 16px;
+}
+
+/* When clicked */
+.interest.selected {
+  background-color: #1fd12d;
+  color: white;
+  scale: 1.05;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+.captcha-container {
+  margin: 15px 0;
+}
+
+#captcha-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e0e0e0;
+  padding: 10px;
+  width: 180px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+#captcha-text {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+#refresh-btn {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  background: #ccc;
+  cursor: pointer;
+}
+
+#captcha-status {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+@media (max-width: 480px) {
+  .interests-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 350px) {
+  .interests-grid {
+    grid-template-columns: 1fr;
+  }
+}
