@@ -5,9 +5,17 @@ const validateAchievementCreation = [
     body('description').notEmpty().trim().withMessage('Achievement description is required'),
     body('badgeIconUrl').isURL().withMessage('Badge icon URL must be a valid URL'),
     body('criteria').isObject().withMessage('Criteria must be an object'),
-    body('criteria.type').isIn([]).withMessage('Invalid criteria type'),// Define valid criteria types here
+    body('criteria.type').isIn([
+        'account_created', 
+        'article_read', 
+        'article_searched', 
+        'bookmark_added', 
+        'profile_updated', 
+        'article_count'
+    ]).withMessage('Invalid criteria type'),
     body('criteria.field').if(body('criteria.type').isIn([
-    ])).notEmpty().withMessage('Field is required for this criteria type'), // Specify criteria types that need 'field'
+        'article_count'
+    ])).notEmpty().withMessage('Field is required for this criteria type'),
     body('criteria.operator').isIn(['>=', '==', '<=', '>', '<', 'contains', 'count_gte'])
         .withMessage('Invalid operator'),
     body('criteria.value').notEmpty().withMessage('Value is required'),

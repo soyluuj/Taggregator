@@ -9,17 +9,20 @@ const achievementSchema = new mongoose.Schema({
     criteria: { type: {
             type: String, 
             required: true,
-            enum: [] // Define types of criteria here
+            enum: ['account_created', 'article_read', 'article_searched', 'bookmark_added', 'profile_updated', 'article_count']
         },
         field: { type: String },
         operator: { 
             type: String, 
             enum: ['>=', '==', '<=', '>', '<', 'contains', 'count_gte'] 
         },
-        value: { type: mongoose.Schema.Types.Mixed },
-        query: { type: String }
+        value: { type: mongoose.Schema.Types.Mixed }
  },
-    exp: { type: Number, required: true }
-})
+    exp: { type: Number, required: true },
+    isActive: { type: Boolean, default: true },
+    category: { type: String, default: 'general' }
+}, {
+    timestamps: true
+});
 
 module.exports = mongoose.model('Achievement', achievementSchema);

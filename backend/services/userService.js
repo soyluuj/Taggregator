@@ -12,6 +12,8 @@ const registerUser = async (userData) => {
     
     const savedUser = await newUser.save();
 
+    await recordUserAction(savedUser.id, 'account_created');
+
     const userObject = savedUser.toObject();
     delete userObject.password;
 
