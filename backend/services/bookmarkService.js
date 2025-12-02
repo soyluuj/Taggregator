@@ -1,5 +1,5 @@
-const Bookmark = require('../models/Bookmark');
-const User = require('../models/User');
+const Bookmark = require('../models/bookmarkModel');
+const User = require('../models/userModel');
 // Will add social services like following and public bookmarks once userModel
 // implements those.
 

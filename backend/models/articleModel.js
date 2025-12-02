@@ -13,7 +13,6 @@ const articleSchema = new mongoose.Schema({
     timestamps: true 
 });
 
-articleSchema.index({ id: 1 });
 articleSchema.index({ publishedDate: -1 });
 
 module.exports = mongoose.model('Article', articleSchema);

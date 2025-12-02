@@ -1,12 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const achievementRoute = require("./backend/routes/achievementRoute")
+const achievementRoute = require("./backend/routes/achievementRoutes")
 const articleRoutes = require("./backend/routes/articleRoutes")
 const bookmarkRoutes = require("./backend/routes/bookmarkRoutes")
-const userRoute = require("./backend/routes/userRoute")
+const userRoute = require("./backend/routes/userRoutes")
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const mongooseDatabase = 
@@ -15,10 +16,10 @@ mongoose.connect(mongooseDatabase)
   .then(() => console.log("Connected to DB"))
   .catch(err => console.error(err));
 
-app.use("/backend", achievementRoute.js);
-app.use("/backend", articleRoutes.js);
-app.use("/backend", bookmarkRoutes.js);
-app.use("/backend", userRoute.js);
+app.use("/backend/achievements", achievementRoutes);
+app.use("/backend/articles", articleRoutes);
+app.use("/backend/bookmarks", bookmarkRoutes);
+app.use("/backend/users", userRoutes);
 
 const PORT = 3000;
 app.listen(
