@@ -4,13 +4,12 @@ const articleController = require('../controllers/articleController');
 
 router.get('/', articleController.getHomePage);
 
-router.get('/articles', articleController.getAllArticles);
+router.get('/all', articleController.getAllArticles);
 
-router.get('/articles/new', articleController.showCreateForm);
-router.post('/articles', articleController.createArticle);
+router.post('/new', articleController.createArticle);
 
-router.get('/articles/:id', articleController.getArticle);
+router.get('/:id', articleController.getArticle);
 
-router.post('/articles/:id/like', articleController.likeArticle);
+router.post('/:id/like', articleController.likeArticle);
 
 module.exports = router;
