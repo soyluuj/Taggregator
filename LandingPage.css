@@ -11,6 +11,9 @@ body {
   color: #222;
 }
 
+
+
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -69,29 +72,7 @@ nav a:hover {
 }
 
 
-
-/* Mobile Mode
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-
-  nav {
-    display: none;
-    width: 100%;
-  }
-  nav.active {
-    display: block;
-  }
-   nav ul {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1rem;
-  }
-} */
-/* ================================
-   Tablet & Mobile ( <= 768px )
-   ================================ */
+/* Tablet & Mobile ( <= 768px )*/
 @media (max-width: 768px) {
   nav {
     position: absolute;
@@ -119,9 +100,7 @@ nav a:hover {
   }
 }
 
-/* ================================
-   Mobile Large ( <= 425px )
-   ================================ */
+/* Mobile Large ( <= 425px )*/
 @media (max-width: 425px) {
   nav {
     width: 180px;
@@ -138,9 +117,7 @@ nav a:hover {
   }
 }
 
-/* ================================
-   Mobile Medium ( <= 375px )
-   ================================ */
+/* Mobile Medium ( <= 375px )*/
 @media (max-width: 375px) {
   .navbar {
     padding: 0.8rem 1rem;
@@ -157,9 +134,7 @@ nav a:hover {
   }
 }
 
-/* ================================
-   Mobile Small ( <= 320px )
-   ================================ */
+/* Mobile Small ( <= 320px )*/
 @media (max-width: 320px) {
   .navbar {
     padding: 0.7rem 0.9rem;
@@ -184,6 +159,14 @@ nav a:hover {
 
 
 
+
+/* ==================================================================================== */
+
+
+
+
+
+
 /* Hero Section */
 .hero {
   display: flex;
@@ -192,8 +175,15 @@ nav a:hover {
   justify-content: center;
   text-align: center;
   padding: 5rem 1rem;
-  background-image: url('Assets/AP\ -\ Pixels.jpg'); 
+ /* background-image: url('Assets/AP\ -\ Pixels.jpg'); */
   background-size: 80%;
+  max-width: 100%;
+}
+
+.hero img {
+    width: auto;
+    max-width: 250px;
+    height: auto;
 }
 
 .hero-content h1 {
@@ -225,20 +215,6 @@ nav a:hover {
 
 
 
-/* Placeholder for logo box */
-/* .logo-box {
-  width: 120px;
-  height: 120px;
-  background-color: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* font-weight: bold; */
-  /* margin: 0 auto 1rem auto;
-  border-radius: 8px; 
-  }*/
-
-
 .logo-box img {
   max-width: 40%;
   max-height: 40%;
@@ -266,6 +242,7 @@ nav a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 250px;
 }
 
 .about-content p {
@@ -278,6 +255,11 @@ nav a:hover {
 
 
 
+/* ==================================================================================== */
+
+
+
+
 
 
 
@@ -286,6 +268,7 @@ nav a:hover {
 .logo-carousel {
   position: relative;
   width: 100%;
+  height: 250px;
   overflow: hidden;
   background: #22d732;
   padding: 2rem 0;
@@ -332,6 +315,19 @@ nav a:hover {
 .logo-prev { left: 10px; }
 .logo-next { right: 10px; }
 
+
+
+
+
+/* ==================================================================================== */
+
+
+
+
+
+
+
+
 /* Featured organization section */
 .org-highlight {
   margin-top: 3rem;
@@ -339,8 +335,8 @@ nav a:hover {
 }
 
 .org-logo {
-  width: 200px;
-  height: auto;
+  width: 230px;
+  height: 230px;
   background-color: #666;
   color: white;
   font-weight: bold;
@@ -387,18 +383,33 @@ nav a:hover {
 
 
 
+
+
+/* ==================================================================================== */
+
+
+
+
 /* Big Carousel */
 .carousel {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  width: 100%;
 }
 
 .carousel-container {
   position: relative;
-  width: 400px;
-  height: 300px;
+  width: 100%;
+  max-width: 1000px;
+
+  /* Maintain 4:3 ratio */
+  aspect-ratio: 4 / 3;
+
+  /* 🟢 FIX: prevent collapse */
+  min-height: 300px; /* 200px h, 350 w */
+
   background-color: #aaa;
   border-radius: 15px;
   overflow: hidden;
@@ -407,10 +418,15 @@ nav a:hover {
 
 .slide {
   opacity: 0;
-  transition: opacity 0.7s ease-in-out; /* controls the fade speed */
+  transition: opacity 0.7s ease-in-out; 
   position: absolute;
   width: 100%;
   height: 100%;
+
+  /* 🟢 FIX: ensure they occupy height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slide-active {
@@ -421,7 +437,11 @@ nav a:hover {
 .slide-img {
   width: 100%;
   height: 100%;
+
+  /* 🟢 FIX: fill container while keeping shape */
   object-fit: cover;
+
+  display: block;
 }
 
 .prev, .next {
@@ -436,7 +456,6 @@ nav a:hover {
   padding: 0.5rem;
   border-radius: 50%;
 }
-
 
 .prev { left: 10px; }
 .next { right: 10px; }
@@ -461,3 +480,158 @@ nav a:hover {
 .dot.active {
   background-color: #333;
 }
+
+
+
+
+
+/* ==================================================================================== */
+
+
+
+
+
+
+/*  MOBILE SIZING  */
+/*  TABLET (≤768px)  */
+@media (max-width: 768px) {
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .about-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Tablet carousel — wider and short */
+  .carousel-container {
+    width: 420px;
+    height: 220px; /* good tablet height */
+  }
+
+  .carousel-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .about p {
+    width: 90%;
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+}
+
+/* ===== MOBILE L (≤425px) ===== */
+@media (max-width: 425px) {
+  .carousel {
+    padding: 1.5rem 0;
+  }
+
+  /* Make the carousel container a landscape box */
+  .carousel-container {
+    width: 75vw !important;      /* full actual screen width */
+    max-width: 75vw !important;  
+    margin-left: calc(50% - 50vw); /* center it, remove page padding */
+    margin-right: calc(50% - 50vw);
+    
+    aspect-ratio: 4 / 3;          /* keeps it horizontal and big */
+    height: auto !important;
+  }
+
+  .carousel-container img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+
+  /* Arrow controls inside the container should stay centered vertically */
+  .carousel-container .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* debug: temporary outline to confirm shape (remove after testing) */
+  .carousel-container.debug {
+    outline: 2px dashed rgba(0,0,0,0.12);
+  }
+  .about p {
+    width: 90%;
+    font-size: 0.7rem;
+    line-height: 1.4rem;
+  }
+  .logo-carousel {
+    display: none;
+  }
+  .org-logo{
+    display: none;
+  }
+  .section-heading {
+    display: none;
+  }
+
+}
+
+
+/* ===== MOBILE M (≤375px) ===== */
+@media (max-width: 375px) {
+
+  .carousel-container {
+    width: 280px;
+    height: 160px;
+  }
+
+  .carousel-container img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about p {
+    font-size: 0.7rem;
+  }
+   .logo-carousel {
+    display: none;
+  }
+  .org-logo{
+    display: none;
+  }
+  .section-heading {
+    display: none;
+  }
+}
+
+/* ===== MOBILE S (≤320px) ===== */
+@media (max-width: 320px) {
+
+  .carousel-container {
+    width: 250px;
+    height: 145px;
+  }
+
+  .carousel-container img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about p {
+    font-size: 0.65rem;
+  }
+   .logo-carousel {
+    display: none;
+  }
+  .org-logo{
+    display: none;
+  }
+  .section-heading {
+    display: none;
+  }
+}
+
