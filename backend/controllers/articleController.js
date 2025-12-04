@@ -62,7 +62,18 @@ const articleController = {
     createArticle: async (req, res) => {
         try {
             const { title, content, author, tags } = req.body;
-            const tagArray = tags ? tags.split(',').map(tag => tag.trim()) : [];
+
+            let tagArray = [];
+            
+            if (tags) {
+                if (typeof tags === 'string') {
+                    // If tags is a string (comma-separated)
+                    tagArray = tags.split(',').map(tag => tag.trim()).filter(tag => tag);
+                } else if (Array.isArray(tags)) {
+                    // If tags is already an array
+                    tagArray = tags.map(tag => String(tag).trim()).filter(tag => tag);
+                }
+            }
             
             await articleService.createArticle({
                 title,
