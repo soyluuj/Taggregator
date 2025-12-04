@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
 }
 
 /* NAVBAR */
@@ -156,8 +155,8 @@ body {
 }
 
 .badge {
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
