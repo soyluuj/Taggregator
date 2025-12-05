@@ -9,6 +9,8 @@
 
 
 <body>
+    <!--unused <button class="back-btn" onclick="history.back()">← Back</button> -->
+
     <section class="signup">
         <!-- Step 1: Create Account -->
          
@@ -27,16 +29,16 @@
 
             <form id="emailForm" style="display: none;">
                 <label for="username">Username</label>
-                <input type="text" id="username" />
+                <input type="text" id="username" required>
 
                 <label for="email">Email</label>
-                <input type="email" id="email" />
+                <input type="email" id="email" required>
 
                 <label for="password">Password</label>
-                <input type="password" id="password" />
+                <input type="password" id="password" required>
 
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" />
+                <input type="password" id="confirm-password" required>
                 <p class="login-link">
                     Already have an account? <a href="AuthPage.html">Log in</a>
                 </p>
@@ -53,7 +55,7 @@
                     <p id="captcha-status"></p>
                 </div>
 
-                <button type="button" id="nextBtn">Sign up</button>
+                <button type="submit" id="nextBtn">Sign up</button>
             </form>
         </div>
         
@@ -63,8 +65,14 @@
         <label for="fallback-email">Account</label>
         <input type="email" id="fallback-email">
 
-        <button type="button" id="fallbackNext">Continue</button>
+        <button type="submit" id="fallbackNext">Continue</button>
     </form>
+    
+    
+
+
+
+
 
 
         <!-- Step 2 -->
@@ -90,9 +98,9 @@
         </div>
     </section>
 
-    <!-- JS -->
+    
     <script>
-        /* -- CAPTCHA -- */
+                /* ---------------- Script for CAPTCHA ---------------- */
         let captchaValue = "";
 
         function generateCaptcha() {
@@ -126,20 +134,52 @@
         window.addEventListener("load", generateCaptcha);
 
 
-        /* ---------------- Step change ---------------- */
-        const nextBtn = document.getElementById('nextBtn');
+        /* ---------------- Step Switching ---------------- */
+        const authButtons = document.getElementById("authButtons");
+        const emailForm = document.getElementById("emailForm");
+        const oauthEmailForm = document.getElementById("oauthEmailForm");
+
         const step1 = document.getElementById('signup-step-1');
         const step2 = document.getElementById('signup-step-2');
 
-        nextBtn.addEventListener('click', () => {
-            if (checkCaptcha()) {  
-                step1.classList.add('hidden');
-                step2.classList.remove('hidden');
-            }
+        // Show email form
+        document.getElementById("emailOption").addEventListener("click", () => {
+            authButtons.style.display = "none";
+            emailForm.style.display = "block";
+        });
+
+        // Show fallback email for Google/FB the githubBtn is a leftover. It's supposed to be Facebook
+        document.getElementById("googleBtn").addEventListener("click", () => {
+            authButtons.style.display = "none";
+            oauthEmailForm.style.display = "block";
+        });
+
+        document.getElementById("githubBtn").addEventListener("click", () => {
+            authButtons.style.display = "none";
+            oauthEmailForm.style.display = "block";
         });
 
 
-        /* -- Interest selection -- */
+        /* ---------------- Email Form Submit ---------------- */
+        emailForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (!emailForm.checkValidity()) {
+                emailForm.reportValidity();
+                return;
+            }
+
+            if (!checkCaptcha()) {
+                return;
+            }
+
+            
+            step1.classList.add("hidden");
+            step2.classList.remove("hidden");
+        });
+
+
+        /* ---------------- Interest Selection ---------------- */
         const interestButtons = document.querySelectorAll(".interest");
         let Count = 0;
 
@@ -155,35 +195,6 @@
                     Count--;
                 }
             });
-        });
-        document.getElementById("emailOption").addEventListener("click", () => {
-        document.getElementById("signupForm").style.display = "block";
-        });
-        document.querySelector(".google-btn").addEventListener("click", () => {
-        document.getElementById("authOptions").style.display = "none";
-        document.getElementById("fallbackForm").style.display = "block";
-        });document.getElementById("emailOption").addEventListener("click", () => {
-        authButtons.style.display = "none";
-        emailForm.style.display = "block";
-});
-
-        const authButtons = document.getElementById("authButtons");
-        const emailForm = document.getElementById("emailForm");
-        const oauthEmailForm = document.getElementById("oauthEmailForm");
-
-        document.getElementById("emailOption").addEventListener("click", () => {
-            authButtons.style.display = "none";
-            emailForm.style.display = "block";
-        });
-
-        document.getElementById("googleBtn").addEventListener("click", () => {
-            authButtons.style.display = "none";
-            oauthEmailForm.style.display = "block";
-        });
-
-        document.getElementById("githubBtn").addEventListener("click", () => {
-            authButtons.style.display = "none";
-            oauthEmailForm.style.display = "block";
         });
 
     </script>

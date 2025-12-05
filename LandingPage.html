@@ -48,13 +48,13 @@
               <section class="carousel">
                   <div class="carousel-container">
                     <div class="slide slide-active">
-                      <img class="slide-img" src="Assets/LINE_ALBUM_Funny_250818_1.jpg" alt="image 1"/>
+                      <img class="slide-img" src="Assets/istockphoto-944631208-612x612.jpg" alt="image 1"/>
                     </div>
                     <div class="slide">
-                      <img class="slide-img" src="Assets/LINE_ALBUM_Funny_250820_1.jpg" alt="image 2"/>
+                      <img class="slide-img" src="Assets/Open-Book-Clip-Art-Red.jpg" alt="image 2"/>
                     </div>
                     <div class="slide">
-                      <img class="slide-img" src="Assets/LINE_ALBUM_Funny_250822_1.jpg" alt="image 3"/>
+                      <img class="slide-img" src="Assets/swampy-logo.jpg" alt="image 3"/>
                     </div>
 
                     <button class="prev">&#10094;</button>
@@ -78,20 +78,14 @@
   
   <!-- Partners section/featured articles -->
 <section class="partners">
-  <p class="section-heading">With articles from...</p>
-
-  <div class="logo-carousel">
-    <button class="logo-prev">&#10094;</button>
-
-    <div class="logo-track">
-      <div class="partner-box"></div>
-    </div>
-
-    <button class="logo-next">&#10095;</button>
-  </div>
+ 
+    
 
   <div class="org-highlight">
-    <div class="org-logo">org logo</div>
+    <div class="org-logo">
+      <img src="Assets/swampy-logo.jpg" alt="Organization Logo">
+    </div>
+      
     <h3>The Tengoku Organization</h3>
     <p>To provide fun learning as a service and to make it free for everyone.</p>
     <a href="#" class="org-btn">Learn more about us</a>
@@ -124,31 +118,7 @@
 
 
 
-<!--Logo Carousel script-->
-<script>
-  const logoTrack = document.querySelector('.logo-track');
-  const logoPrev = document.querySelector('.logo-prev');
-  const logoNext = document.querySelector('.logo-next');
 
-let logoPos = 0;
-const logoWidth = 120; // 90px box + ~30px gap
-
-logoNext.addEventListener('click', () => {
-  // Move the track RIGHT
-  logoPos += logoWidth;
-  logoTrack.style.transform = `translateX(${logoPos}px)`;
-});
-
-logoPrev.addEventListener('click', () => {
-  // Move the track LEFT
-  logoPos -= logoWidth;
-  logoTrack.style.transform = `translateX(${logoPos}px)`;
-});
-</script>
-
-
-
-<script src="carousel.js"></script>
 
 
 

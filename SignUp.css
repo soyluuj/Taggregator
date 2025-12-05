@@ -131,3 +131,19 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* .back-btn {
+    margin: 20px;
+    padding: 10px 16px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #d5d5d5;
+} */
