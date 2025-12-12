@@ -31,15 +31,71 @@ The technical stack is:
 * Vercel
 
 ### Models
+#### achievementModel
+```
+achievement {
+    id: { type: String,  unique:true, default: () => uuidv4() },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    badgeIconUrl: { type: String, required: true },
+    criteria: { type: String, required: true },
+    exp: { type: Number, required: true }
+}
+```
+
+#### articleModel
+```
+article {
+    id: { type: String, unique: true, default: () => uuidv4() },
+    title: { type: String, required: true, trim: true },
+    content: { type: String, required: true },
+    author: { type: String, required: true, trim: true },
+    publishedDate: { type: Date, default: Date.now },
+    tags: [{ type: String, trim: true }],
+    isPublished: { type: Boolean, default: true }
+}
+```
+#### bookmarkCollectionsModel
+```
+bookmarkCollection {
+    id: { type: String, unique: true, default: () => uuidv4() },
+    name: { type: String, required: true, trim: true },
+    description: { type: String, trim: true },
+    userId: { type: String, ref: 'User', required: true },
+    isPublic: { type: Boolean, default: true },
+
+    bookmarks: [{ type: String, ref: 'Bookmark' }] 
+}
+```
+#### bookmarkModel
+```
+bookmark {
+    id: { type: String, unique: true, default: () => uuidv4() },
+    name: { type: String, required: true, trim: true },
+    description: { type: String, trim: true },
+    userId: { type: String, ref: 'User', required: true },
+    isPublic: { type: Boolean, default: true },
+
+    bookmarks: [{ type: String, ref: 'Bookmark' }] 
+}
+```
+#### userAchievementModel
+```
+userAchievement {
+    userId: { type: String, required: true },
+    achievementId: { type: String, required: true },
+    dateAchieved: { type: Date, default: Date.now }
+}
+```
 #### userModel
 ```
 user {
-    id: string,
-    username: string,
-    password: string,
-    following: [string],
-    followers: [string],
-    public: boolean
+    id: { type: String,  unique:true, default: () => uuidv4() },
+    username: { type: String, required: true, trim: true },
+    password: { type: String, required: true },
+    following: [{ type: String }], 
+    followers: [{ type: String }],
+    publicProfile: { type: Boolean, default: true }
 }
 ```
 
