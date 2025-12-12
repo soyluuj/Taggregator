@@ -1,41 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signup</title>
-  <link rel="stylesheet" href="../Stylesheet/Signup.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="SignUp.css" />
 </head>
+
+
 <body>
-  <div class="signup-container">
-    <h2>Create an account</h2>
-    <form id="signupForm">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" required />
-      </div>
+    <!--unused <button class="back-btn" onclick="history.back()">← Back</button> -->
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" required />
-      </div>
+    <section class="signup">
+        <!-- Step 1: Create Account -->
+         
+        
+        <div class="signup-step" id="signup-step-1">
+            <h2>Create an account</h2>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" required />
-      </div>
+        <div class="auth-options" id="authButtons">
+            <button class="google-btn" id="googleBtn">Continue with Google</button>
+            <button class="github-btn" id="githubBtn">Continue with Facebook</button>
 
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" required />
-      </div>
+            <div class="divider"><span>or</span></div>
 
-      <p id="errorMessage" class="error"></p>
-      <button type="submit">Sign Up</button>
-      <p id="successMessage" class="success"></p>
+            <button type="button" id="emailOption">Continue using Email</button>
+        </div>
+
+            <form id="emailForm" style="display: none;">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" required>
+                <p class="login-link">
+                    Already have an account? <a href="AuthPage.html">Log in</a>
+                </p>
+                
+
+                <!-- ✅ CAPTCHA here -->
+                <div class="captcha-container">
+                    <div id="captcha-box">
+                        <span id="captcha-text"></span>
+                        <button type="button" id="refresh-btn">↻</button>
+                    </div>
+
+                    <input type="text" id="captcha-input" placeholder="Enter CAPTCHA" />
+                    <p id="captcha-status"></p>
+                </div>
+
+                <button type="submit" id="nextBtn">Sign up</button>
+            </form>
+        </div>
+        
+    <form id="oauthEmailForm" style="display: none;">
+        <h3>Enter your credentials to continue</h3>
+
+        <label for="fallback-email">Account</label>
+        <input type="email" id="fallback-email">
+
+        <button type="submit" id="fallbackNext">Continue</button>
     </form>
-  </div>
+    
+    
 
-  <script src="../Script/Signup.js"></script>
+
+
+
+
+
+        <!-- Step 2 -->
+        <div class="signup-step hidden" id="signup-step-2">
+            <h2>Choose your interests!</h2>
+
+            <div class="interests-grid">
+                <button class="interest">Science</button>
+                <button class="interest">Math</button>
+                <button class="interest">History</button>
+                <button class="interest">Technology</button>
+                <button class="interest">Art</button>
+                <button class="interest">Language</button>
+                <button class="interest">Gaming</button>
+                <button class="interest">Sports</button>
+                <button class="interest">Music</button>
+                <button class="interest">Coding</button>
+                <button class="interest">Business</button>
+                <button class="interest">Design</button>
+            </div>
+
+            <button id="finishBtn">Next</button>
+        </div>
+    </section>
+
+    
+<script>
+    /* ---------------- Script for CAPTCHA ---------------- */
+    let captchaValue = "";
+
+    function generateCaptcha() {
+        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        captchaValue = "";
+
+        for (let i = 0; i < 5; i++) {
+            captchaValue += chars[Math.floor(Math.random() * chars.length)];
+        }
+
+        document.getElementById("captcha-text").textContent = captchaValue;
+    }
+
+    function checkCaptcha() {
+        const userValue = document.getElementById("captcha-input").value.trim();
+        const status = document.getElementById("captcha-status");
+
+        if (userValue === captchaValue) {
+            status.style.color = "green";
+            status.textContent = "Correct!";
+            return true;
+        } else {
+            status.style.color = "red";
+            status.textContent = "Incorrect, try again!";
+            generateCaptcha();
+            return false;
+        }
+    }
+
+    document.getElementById("refresh-btn").addEventListener("click", generateCaptcha);
+    window.addEventListener("load", generateCaptcha);
+
+
+    /* ---------------- Step Switching ---------------- */
+    const authButtons = document.getElementById("authButtons");
+    const emailForm = document.getElementById("emailForm");
+    const oauthEmailForm = document.getElementById("oauthEmailForm");
+    const step1 = document.getElementById('signup-step-1');
+    const step2 = document.getElementById('signup-step-2');
+
+    // Show email form
+    document.getElementById("emailOption").addEventListener("click", () => {
+        authButtons.style.display = "none";
+        emailForm.style.display = "block";
+    });
+
+    // Show fallback email for Google/FB
+    document.getElementById("googleBtn").addEventListener("click", () => {
+        authButtons.style.display = "none";
+        oauthEmailForm.style.display = "block";
+    });
+
+    document.getElementById("githubBtn").addEventListener("click", () => {
+        authButtons.style.display = "none";
+        oauthEmailForm.style.display = "block";
+    });
+
+
+    /* ---------------- Email Form Submit ---------------- */
+    emailForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        // Form validation
+        if (!emailForm.checkValidity()) {
+            emailForm.reportValidity();
+            return;
+        }
+
+        // Check if passwords match
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+        
+        if (password !== confirmPassword) {
+            alert("Passwords don't match!");
+            return;
+        }
+
+        // Check CAPTCHA
+        if (!checkCaptcha()) {
+            return;
+        }
+
+        // Collect form data
+        const userData = {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        };
+
+        try {
+            // Show loading state
+            const submitBtn = document.getElementById("nextBtn");
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Creating account...";
+            submitBtn.disabled = true;
+
+            // Send POST request to your backend
+            const response = await fetch('/api/users/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Success - move to step 2
+                alert("Account created successfully!");
+                step1.classList.add("hidden");
+                step2.classList.remove("hidden");
+                
+                // Store user data or token if returned
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                }
+            } else {
+                // Show error from backend
+                alert(data.message || "Registration failed!");
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert("Network error. Please try again.");
+            submitBtn.textContent = "Sign up";
+            submitBtn.disabled = false;
+        }
+    });
+
+
+    /* ---------------- OAuth Fallback Form Submit ---------------- */
+    oauthEmailForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById("fallback-email").value;
+        
+        if (!email) {
+            alert("Please enter your email");
+            return;
+        }
+
+        // Handle OAuth fallback - you'll need to adjust this based on your OAuth implementation
+        alert("OAuth fallback - this would connect to your backend OAuth flow");
+        // You would typically redirect to OAuth endpoint or make an API call here
+    });
+
+
+    /* ---------------- Interest Selection & Final Submission ---------------- */
+    const interestButtons = document.querySelectorAll(".interest");
+    let selectedCount = 0;
+    const selectedInterests = [];
+
+    interestButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const interest = button.textContent;
+            
+            if (!button.classList.contains("selected")) {
+                if (selectedCount < 3) {
+                    button.classList.add("selected");
+                    selectedCount++;
+                    selectedInterests.push(interest);
+                }
+            } else {
+                button.classList.remove("selected");
+                selectedCount--;
+                const index = selectedInterests.indexOf(interest);
+                if (index > -1) {
+                    selectedInterests.splice(index, 1);
+                }
+            }
+        });
+    });
+
+    // Handle finishing signup with interests
+    document.getElementById("finishBtn").addEventListener("click", async function() {
+        if (selectedInterests.length === 0) {
+            alert("Please select at least one interest!");
+            return;
+        }
+
+        try {
+            // Send interests to backend
+            const token = localStorage.getItem('token');
+            
+            if (token) {
+                const response = await fetch('/api/users/interests', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ interests: selectedInterests })
+                });
+
+                if (response.ok) {
+                    // Redirect to dashboard or home page
+                    window.location.href = '/dashboard.html';
+                } else {
+                    alert("Failed to save interests");
+                }
+            } else {
+                // No token, just redirect
+                window.location.href = '/dashboard.html';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert("Error saving interests");
+        }
+    });
+</script>
+
 </body>
 </html>
