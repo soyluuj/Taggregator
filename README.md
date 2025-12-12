@@ -113,5 +113,32 @@ A similar controller to the articleController, it facilitates the creation of pe
 Manages the authentication of the user.
 
 ### Services
+#### achievementService
+* achievementChecker()
+* createAchievement()
+* listAchievements()
+#### articleService
+* calculatePopularityScore()
+* async getPopularArticles()
+* async getAllArticles()
+* getArticleById()
+* getArticleByMongoId()
+* createArticle()
+* incrementViewCount()
+* incrementLikeCount()
+* updateArticle()
+* deleteArticle()
+* getArticlesByAuthor()
+* searchArticles()
+* initializeSampleData()
+#### bookmarkService
+* createBookmark()
+* getUserBookmarks()
+* searchBookmarks()
+* getFollowedUsersBookmarks()
+#### userService
+* registerUser()
+* authenticateUser()
+
 ### Routes
 ### Validators
