@@ -29,3 +29,10 @@ mongoose.connect(mongooseDatabase)
     .catch(err => {
         console.error('Failed to connect to MongoDB', err);
     });
+
+// In your main app.js or server.js
+const cors = require('cors');
+app.use(cors({
+    origin: 'http://localhost:3000', // Your frontend URL
+    credentials: true
+}));
