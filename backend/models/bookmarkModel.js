@@ -7,9 +7,6 @@ const bookmarkSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true },
     tags: [{ type: String, trim: true }],
     userId: { type: String, ref: 'User', required: true }, 
-    // Online capabilities are not implemented yet !!
-    // isPublic: { type: Boolean, default: true }, 
-    // clickCount: { type: Number, default: 0 } 
 }, {
     timestamps: true
 });
