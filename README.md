@@ -141,4 +141,19 @@ Manages the authentication of the user.
 * authenticateUser()
 
 ### Routes
-### Validators
+#### achievementRoutes
+* POST /api/achievements/create
+* GET /api/achievements/list
+#### articleRoutes
+* GET /api/articles/
+* GET /api/articles/all
+* POST /api/articles/new
+* GET /api/articles/:id
+* POST /api/articles/:id/like
+#### bookmarkRoutes
+* GET /api/bookmarks/
+* POST /api/bookmarks/new/
+* GET /api/bookmarks/:id
+#### userRoutes
+* POST /api/users/signin
+* POST /api/users/login
