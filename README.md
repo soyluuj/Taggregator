@@ -22,6 +22,8 @@ Database: MongoDB
 ## API Documentation
 ### Models
 ### Controllers
+#### achievementController.js
+This controller submits information to achievementService to check the user's validity on receiving an achievement.
 ### Services
 ### Routes
 ### Validators
