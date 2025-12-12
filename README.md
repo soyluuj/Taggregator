@@ -18,12 +18,41 @@ Primary Language: JavaScript
 Frontend: HTML/CSS/JS
 Backend: Express
 Database: MongoDB
+Platform: Vercel
 
 ## API Documentation
+
+### Overview
+The Taggregator API serves as the bridge between the database and the website itself. It contains the middleware necessary to fetch data of the articles, users, and their bookmarks.
+
+The technical stack is:
+* Node and Express
+* MongoDB
+* Vercel
+
 ### Models
+#### userModel
+```
+user {
+    id: string,
+    username: string,
+    password: string,
+    following: [string],
+    followers: [string],
+    public: boolean
+}
+```
+
 ### Controllers
-#### achievementController.js
+#### achievementController
 This controller submits information to achievementService to check the user's validity on receiving an achievement.
+
+#### articleController
+The article controller manages the home page, and the content served in it. It is connected to the articleService and can get all articles, get a single article, like, and create an article. It also fetches popular articles as a default configuration.
+
+#### bookmarkController
+A similar controller to the articleController, it facilitates the creation of personalized article lists, as well as serving popular bookmark lists from other accounts.
+
 ### Services
 ### Routes
 ### Validators
