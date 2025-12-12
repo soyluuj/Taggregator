@@ -109,6 +109,9 @@ The article controller manages the home page, and the content served in it. It i
 #### bookmarkController
 A similar controller to the articleController, it facilitates the creation of personalized article lists, as well as serving popular bookmark lists from other accounts.
 
+#### userController
+Manages the authentication of the user.
+
 ### Services
 ### Routes
 ### Validators
