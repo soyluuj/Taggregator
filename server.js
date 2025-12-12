@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");  // ← ADDED
 
 const achievementRoutes = require("./backend/routes/achievementRoutes")
 const articleRoutes = require("./backend/routes/articleRoutes")
@@ -10,6 +11,8 @@ const userRoutes = require("./backend/routes/userRoutes")
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, "frontend")));
 
 app.use("/api/achievements", achievementRoutes);
 app.use("/api/articles", articleRoutes);
