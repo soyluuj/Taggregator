@@ -18,3 +18,10 @@ Primary Language: JavaScript
 Frontend: HTML/CSS/JS
 Backend: Express
 Database: MongoDB
+
+## API Documentation
+### Models
+### Controllers
+### Services
+### Routes
+### Validators
