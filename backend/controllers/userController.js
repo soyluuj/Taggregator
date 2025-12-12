@@ -14,10 +14,10 @@ const loginUser = async (req, res) => {
     try {
         const { username, password } = req.body;
         const result = await service.authenticateUser(username, password);
-        res.status(200).json(result);
+         res.status(200).json({ message: 'Login successful', ...result });
     }
     catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ message: 'Login failed', error: err.message });
     }
 }
 
