@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const achievementRoutes = require("./backend/routes/achievementRoutes")
 const articleRoutes = require("./backend/routes/articleRoutes")
@@ -8,6 +9,9 @@ const bookmarkRoutes = require("./backend/routes/bookmarkRoutes")
 const userRoutes = require("./backend/routes/userRoutes")
 
 const app = express();
+
+app.use(cors());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

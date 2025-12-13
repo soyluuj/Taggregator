@@ -102,31 +102,56 @@ body {
 
 /* ARTICLES SECTION */
 .articles-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+    justify-content: center;
+    gap: 20px;
 }
 
 .articles-box {
     width: 1000px;
-    height: 300px;
+    height: auto;
+    align-content: center;
     background: #ddd;
     padding: 15px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 12px;
-    overflow-y: auto;
+    overflow: visible;
     border-radius: 6px;
 }
 
 .article {
     display: grid;
-    gap: 40px;
-    background: #b6b6b6;
+    background:  #95e497;
     border-radius: 10px;
-    text-align: center;
 }
+
+.article h3 {
+    font-family: afacad;
+    margin: 10%;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between; /* pushes date to left, tags to right */
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    font-size: 14px;
+    color: #555;
+    font-family: afacad;
+}
+
+.article-tags {
+    /* optional styling for tags */
+    font-weight: bold;
+    color: #333;
+}
+
 
 /* FONTS */
 @font-face {
