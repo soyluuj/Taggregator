@@ -152,51 +152,6 @@ body {
     color: #333;
 }
 
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.modal.hidden {
-    display: none;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    max-width: 700px;
-    max-height: 80vh;
-    overflow-y: auto;
-    border-radius: 8px;
-    position: relative;
-}
-
-#closeModal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#modalTitle {
-    margin-top: 0;
-}
-
-#modalContent {
-    margin: 15px 0;
-}
-
-
 /* FONTS */
 @font-face {
   font-family: Afacad;
