@@ -15,4 +15,4 @@ bookmarkSchema.index({ userId: 1, createdAt: -1 });
 bookmarkSchema.index({ tags: 1 });
 bookmarkSchema.index({ isPublic: 1 });
 
-module.exports = mongoose.model('Bookmark', bookmarkBookmark);
+module.exports = mongoose.model('Bookmark', bookmarkSchema);
