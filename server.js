@@ -14,10 +14,6 @@ const app = express();
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
 
 // Duplicate middleware (kept as-is)
 app.use(express.urlencoded({ extended: true }));
@@ -46,8 +42,11 @@ mongoose.connect(mongooseDatabase)
         console.error('Failed to connect to MongoDB', err);
     });
 
-// In your main app.js or server.js
 app.use(cors({
-    origin: 'http://localhost:3000', // Your frontend URL
+    origin: [
+        'http://localhost:3000',
+        'http://127.0.0.1:5500', // VS Code Live Server
+        'http://localhost:5500'
+    ],
     credentials: true
 }));
