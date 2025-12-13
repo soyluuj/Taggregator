@@ -11,6 +11,8 @@ const userRoutes = require("./backend/routes/userRoutes")
 
 const app = express();
 
+app.use(cors());
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -41,12 +43,3 @@ mongoose.connect(mongooseDatabase)
   .catch(err => {
         console.error('Failed to connect to MongoDB', err);
     });
-
-app.use(cors({
-    origin: [
-        'http://localhost:3000',
-        'http://127.0.0.1:5500', // VS Code Live Server
-        'http://localhost:5500'
-    ],
-    credentials: true
-}));
