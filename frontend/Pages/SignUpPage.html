@@ -286,7 +286,7 @@
 
         try {
             // Send interests to backend
-            const token = localStorage.getItem('token');
+            /* const token = localStorage.getItem('token');
             
             if (token) {
                 const response = await fetch('/api/users/interests', {
@@ -306,8 +306,9 @@
                 }
             } else {
                 // No token, just redirect
-                window.location.href = '/dashboard.html';
-            }
+                window.location.href = '/dashboard.html'; 
+            }*/
+           window.location.href = '/Pages/AuthPage.html';
         } catch (error) {
             console.error('Error:', error);
             alert("Error saving interests");

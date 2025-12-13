@@ -12,14 +12,21 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
-        const { username, password } = req.body;
-        const result = await service.authenticateUser(username, password);
-         res.status(200).json({ message: 'Login successful', ...result });
+        const { identifier, password } = req.body;
+
+        const result = await service.authenticateUser(identifier, password);
+
+        res.status(200).json({
+            message: 'Login successful',
+            ...result
+        });
+    } catch (err) {
+        res.status(400).json({
+            message: 'Login failed',
+            error: err.message
+        });
     }
-    catch (err) {
-        res.status(400).json({ message: 'Login failed', error: err.message });
-    }
-}
+};
 
 module.exports = {
     registerUser,
